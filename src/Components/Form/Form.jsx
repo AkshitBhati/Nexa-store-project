@@ -5,7 +5,6 @@ import './Form.css';
 import { useNavigate } from 'react-router-dom';
 
 const Form = ({ name }) => {
-  // STATES FOR HANDLING THE INPUT VALUES
   const [awb, setAwb] = useState('');
   const [firmName, setFirmName] = useState('');
   const [sborder, setSborder] = useState('');
@@ -14,31 +13,29 @@ const Form = ({ name }) => {
   const [category, setCategory] = useState('');
   const [qty, setQty] = useState('');
 
-  //FUNCTION FOR NAVIGATING
-  const navigate = useNavigate()
-  const excelNavigate = () => {
-    navigate("/excel")
-  }
+  const navigate = useNavigate();
 
-  // FUNCTION FOR SUBMITTING THE VALUE
+  const excelNavigate = () => {
+    navigate("/excel");
+  };
+
   const submitHandler = async () => {
     try {
-       if(!awb || !firmName || !sborder || !rtype || !sku || !category || !qty ){
-                alert("fill all feilds")
-                return 
-                }
-      // Check if the AWB number already exists
-      const awbExistsQuery = query(collection(db, 'data'), where('awb', '==', awb));
+      if (!awb || !firmName || !sborder || !rtype || !sku || !category || !qty) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const awbExistsQuery = query(collection(db, 'data'), where('awb', '==', Number(awb)));
       const awbExistsSnapshot = await getDocs(awbExistsQuery);
 
       if (!awbExistsSnapshot.empty) {
-        console.log('AWB number already exists. Please enter a different one.');
-        alert("AWB number already exists. Please enter a different one.")
+        alert("AWB number already exists. Please enter a different one.");
         return;
       }
 
       const data = await addDoc(collection(db, 'data'), {
-        awb: awb,
+        awb: Number(awb),
         firmname: firmName,
         suborder_id: sborder,
         returnType: rtype,
@@ -54,13 +51,15 @@ const Form = ({ name }) => {
       setSku('');
       setCategory('');
       setQty('');
+
       console.log('Document with id ', data.id);
 
-      navigate("/")
     } catch (err) {
       console.log(err);
+      alert("An error occurred while submitting the form. Please try again.");
     }
   };
+
 
   return (
     <>
