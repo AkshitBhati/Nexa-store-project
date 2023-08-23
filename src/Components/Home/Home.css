@@ -1,0 +1,21 @@
+.home{
+    margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.home__add{
+    margin: 20px;
+}
+.home__btn{
+    padding: 10px;
+    font-size:25px ;
+    background-color:  rgb(18, 18, 61);
+    color: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}

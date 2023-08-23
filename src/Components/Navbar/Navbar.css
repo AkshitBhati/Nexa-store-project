@@ -1,0 +1,21 @@
+.nav{
+    background-color: rgb(18, 18, 61);
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+}
+h3{
+    cursor: pointer;
+}
+
+.nav__btn{
+    padding: 5px 10px 5px 10px;
+    background-color: #fff;
+    color: rgb(18, 18, 61);
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
