@@ -5,4 +5,18 @@
     margin: auto;
     margin-top: 1rem;
     text-align: center;
+    background-color: rgb(18, 18, 61);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
 }
+
+.excel__btn{
+    margin: 10px;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    font-size: 20px;
+    cursor: pointer;
+}
+

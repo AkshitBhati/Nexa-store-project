@@ -104,9 +104,9 @@ const Excel = () => {
   return (
     <div className='excel'>
       <h1>Upload Excel Data</h1>
-      <input type='file' accept='.xlsx,.xls' onChange={handleUpload} />
-      <button onClick={handleSubmit}>Upload File</button>
-      <button onClick={backBtn}>Back</button>
+      <input type='file' accept='.xlsx,.xls' onChange={handleUpload} className="excel__input"/>
+      <button onClick={handleSubmit} className="excel__btn">Upload File</button>
+      <button onClick={backBtn} className="excel__btn">Back</button>
     </div>
   );
 };
