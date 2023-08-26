@@ -9,6 +9,7 @@ import Register from './Components/Register/Register'
 import Usercard from './Components/usercard/Usercard'
 import Excel from './Components/ExcelData/Excel'
 import Scanner from "./Page/Scanner"
+import RtoReturn from './Components/RTO Returns/RtoReturn'
 
 const App = () => {
   const [userName, setUserName] = useState("")
@@ -43,6 +44,7 @@ const App = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/usercard" element={<Usercard name={userName} />} />
       <Route path="/excel" element={<Excel  />} />
+      <Route path="/rtoreturn" element={<RtoReturn  />} />
     </Routes>
     </BrowserRouter>
   )

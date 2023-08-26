@@ -13,6 +13,10 @@ const Home = () => {
     const scanner = () => {
         navigate("/scan")
     }
+
+    const RtoReturn = () => {
+        navigate('/rtoreturn')
+    }
   return (
     <div className='home'>
         <div className='home__add'>
@@ -20,6 +24,9 @@ const Home = () => {
         </div>
         <div className='home__scan'>
             <button className="home__btn" onClick={scanner}>SCAN</button>
+        </div>
+        <div className='home__scan'>
+            <button className="home__btn" onClick={RtoReturn}>RTO Returns Panel</button>
         </div>
     </div>
   )
