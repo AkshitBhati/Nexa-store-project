@@ -4,11 +4,11 @@ import { auth } from './config'
 import Form from './Components/Form/Form'
 import Home from './Components/Home/Home'
 import Navbar from "./Components/Navbar/Navbar"
-import Scanner from './Components/Scanner/Scanner'
 import Login from './Components/Login/Login'
 import Register from './Components/Register/Register'
 import Usercard from './Components/usercard/Usercard'
 import Excel from './Components/ExcelData/Excel'
+import Scanner from "./Page/Scanner"
 
 const App = () => {
   const [userName, setUserName] = useState("")
