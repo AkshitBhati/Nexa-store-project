@@ -1,23 +1,30 @@
-import React, { useState } from 'react';
-import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
-import { db } from '../../config';
-import './Form.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore'
+import { db } from '../../config'
+import { useNavigate } from 'react-router-dom'
+import './Form.css'
 
 const Form = ({ name }) => {
-  const [awb, setAwb] = useState('');
-  const [firmName, setFirmName] = useState('');
-  const [sborder, setSborder] = useState('');
-  const [rtype, setRtype] = useState('');
-  const [sku, setSku] = useState('');
-  const [category, setCategory] = useState('');
-  const [qty, setQty] = useState('');
+  //USESTATE VARIABLES
+  const [awb, setAwb] = useState('')
+  const [firmName, setFirmName] = useState('')
+  const [sborder, setSborder] = useState('')
+  const [rtype, setRtype] = useState('')
+  const [sku, setSku] = useState('')
+  const [category, setCategory] = useState('')
+  const [qty, setQty] = useState('')
+  const [photo1, setPhoto1] = useState(null)
+  const [photo2, setPhoto2] = useState(null)
+  const [video, setVideo] = useState(null)
 
-  const navigate = useNavigate();
+  //FUNCTION FOR NAVIGATION
+  const navigate = useNavigate()
 
   const excelNavigate = () => {
-    navigate("/excel");
-  };
+    navigate("/excel")
+  }
+
+  //FUNCTION FOR SUBMITTIN FORM DATA
 
   const submitHandler = async () => {
     try {
@@ -60,7 +67,23 @@ const Form = ({ name }) => {
     }
   };
 
+// ADDING PHOTOS AND VIDEOS HANDLERS
 
+  const handlePhoto1Change = (event) => {
+    const selectedPhoto = event.target.files[0]
+    setPhoto1(selectedPhoto)
+  }
+
+  const handlePhoto2Change = (event) => {
+    const selectedPhoto = event.target.files[0]
+    setPhoto2(selectedPhoto)
+  }
+
+  const handleVideoChange = (event) => {
+    const selectedVideo = event.target.files[0]
+    setVideo(selectedVideo)
+  }
+  
   return (
     <>
     {
@@ -79,6 +102,20 @@ const Form = ({ name }) => {
       <input type='text' onChange={(e) => setCategory(e.target.value)} value={category}  />
       <label>QTY</label>
       <input type='number' onChange={(e) => setQty(e.target.value)} value={qty}  />
+      <label>Photo1</label>
+      <input type='file' accept='image/*' onChange={handlePhoto1Change} />
+      
+      <label>Photo2</label>
+      <input type='file' accept='image/*' onChange={handlePhoto2Change}  />
+      
+      <label>Video</label>
+      <input type="file" accept="video/*" onChange={handleVideoChange}  />
+      {video && (
+        <video controls>
+          <source src={URL.createObjectURL(video)} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      )}
       <button className='form__btn' onClick={submitHandler}>
         Submit
       </button>

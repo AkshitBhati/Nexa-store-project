@@ -48,7 +48,10 @@ h1{
    margin-bottom: 1rem;
    cursor: pointer;
 }
-
+.form__photo{
+    height: 50px;
+    width: 50px;
+}
 
 @media (max-width:800px){
     .form{
