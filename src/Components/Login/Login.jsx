@@ -47,7 +47,7 @@ const Login = () => {
         <label >Password</label>
         <input type="password" placeholder='Enter Password' value={password} onChange={(e) => setPassword(e.target.value)}/>
         {err && <p className="login__error">{err}</p>}
-        <p className='login__msg' onClick={registerHandler}>New User? Register?</p>
+        {/* <p className='login__msg' onClick={registerHandler}>New User? Register?</p> */}
     </form>
     <div className='login__btn--container'>
     <button className='login__btn' onClick={loginHandler}>Submit</button>
