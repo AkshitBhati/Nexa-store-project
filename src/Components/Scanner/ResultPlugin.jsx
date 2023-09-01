@@ -39,7 +39,7 @@ const ResultContainerTable = ({ data }) => {
                         return (<tr key={i}>
                             <td>{i}</td>
                             <td>{result.decodedText}</td>
-                            {/* <td>{result.result.format.formatName}</td> */}
+                             <td>{result.result.format.formatName}</td> 
                             <td><button onClick={searchHandler}>Search</button></td>
                         </tr>);
                     })
