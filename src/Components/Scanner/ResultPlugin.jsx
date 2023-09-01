@@ -1,4 +1,5 @@
 import React from 'react';
+import "./QR.css"
 
 function filterResults (results) {
     let filteredResults = [];
@@ -18,7 +19,7 @@ function filterResults (results) {
 const ResultContainerTable = ({ data }) => {
     const results = filterResults(data);
     return (
-        <table className={'Qrcode-result-table'}>
+        <table className='Qrcode-result-table'>
             <thead>
                 <tr>
                     <td>#</td>
@@ -34,6 +35,7 @@ const ResultContainerTable = ({ data }) => {
                             <td>{i}</td>
                             <td>{result.decodedText}</td>
                             <td>{result.result.format.formatName}</td>
+                            <td><button>Search</button></td>
                         </tr>);
                     })
                 }
