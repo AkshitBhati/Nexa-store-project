@@ -18,6 +18,11 @@ function filterResults (results) {
 
 const ResultContainerTable = ({ data }) => {
     const results = filterResults(data);
+
+    //FUNCTION FOR SEARCHING THROUGHT THE AWB NUMBER
+    const searchHandler = () => {
+
+    }
     return (
         <table className='Qrcode-result-table'>
             <thead>
@@ -34,8 +39,8 @@ const ResultContainerTable = ({ data }) => {
                         return (<tr key={i}>
                             <td>{i}</td>
                             <td>{result.decodedText}</td>
-                            <td>{result.result.format.formatName}</td>
-                            <td><button>Search</button></td>
+                            {/* <td>{result.result.format.formatName}</td> */}
+                            <td><button onClick={searchHandler}>Search</button></td>
                         </tr>);
                     })
                 }
