@@ -20,9 +20,24 @@ const ResultContainerTable = ({ data }) => {
     const results = filterResults(data);
 
     //FUNCTION FOR SEARCHING THROUGHT THE AWB NUMBER
-    const searchHandler = () => {
-
+    const searchHandler = async(awbNumber) => {
+        try{
+            const querySearch = await db.collection("data").where("awbNumber", "=", awbNumber) 
+            if(querySearch.empty){
+                alert("AWB Number does not exists") 
+            }
+            else{
+                querySearch.forEach((doc) => {
+                    alert("Found document with AWB number:", doc.data())
+                })
+            }
+        }
+        catch(err){
+            alert("Error searching AWB Number")
+        }
     }
+
+    
     return (
         <table className='Qrcode-result-table'>
             <thead>
@@ -39,8 +54,8 @@ const ResultContainerTable = ({ data }) => {
                         return (<tr key={i}>
                             <td>{i}</td>
                             <td>{result.decodedText}</td>
-                             <td>{result.result.format.formatName}</td> 
-                            <td><button onClick={searchHandler}>Search</button></td>
+                            <td>{result.result.format.formatName}</td>
+                            <td><button onClick={() => searchHandler(result.decodedText)}>Search</button></td>
                         </tr>);
                     })
                 }
