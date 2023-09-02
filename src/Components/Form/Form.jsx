@@ -42,6 +42,7 @@ const Form = ({ name }) => {
       }
 
       const data = await addDoc(collection(db, 'data'), {
+        date:new Date(),
         awb: Number(awb),
         firmname: firmName,
         suborder_id: sborder,
@@ -88,7 +89,7 @@ const Form = ({ name }) => {
     <>
     {
       name ? (<div className='form'>
-      <label>AWB Number</label>
+      <label>AWBNumber</label>
       <input type='number' onChange={(e) => setAwb(e.target.value)} value={awb}  />
       <label>Firm Name</label>
       <input type='text' onChange={(e) => setFirmName(e.target.value)} value={firmName} />

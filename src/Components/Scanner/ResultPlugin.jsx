@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { collection,doc,getDoc,query,where } from "firebase/firestore"
+import { db } from '../../config';
 import "./QR.css"
+
 
 function filterResults (results) {
     let filteredResults = [];
@@ -17,28 +20,26 @@ function filterResults (results) {
 }
 
 const ResultContainerTable = ({ data }) => {
+    //USESTATE FOR MANAGING THE LOCAL STATE
+    const [awbNum, setAwbNum] = useState([])
+
     const results = filterResults(data);
 
-    //FUNCTION FOR SEARCHING THROUGHT THE AWB NUMBER
-    const searchHandler = async(awbNumber) => {
-        try{
-            const querySearch = await db.collection("data").where("awbNumber", "=", awbNumber) 
-            if(querySearch.empty){
-                alert("AWB Number does not exists") 
-            }
-            else{
-                querySearch.forEach((doc) => {
-                    alert("Found document with AWB number:", doc.data())
-                })
-            }
-        }
-        catch(err){
-            alert("Error searching AWB Number")
-        }
-    }
+    //FUNCTION FOR DATA FROM AWB NUMBER
+    const searchHandler = async(awb) => {
 
+    }
     
+    const inputSearchHandler = async() => {
+      
+    }
+  
     return (
+        <>
+        <div>
+            <input type="number"  onChange={(e) => setAwbNum(e.target.value)}/>
+            <button onClick={inputSearchHandler}>Search</button>
+        </div>
         <table className='Qrcode-result-table'>
             <thead>
                 <tr>
@@ -56,16 +57,19 @@ const ResultContainerTable = ({ data }) => {
                             <td>{result.decodedText}</td>
                             <td>{result.result.format.formatName}</td>
                             <td><button onClick={() => searchHandler(result.decodedText)}>Search</button></td>
-                        </tr>);
+                        </tr>
+                        )
                     })
                 }
             </tbody>
         </table>
+</>
     );
 };
 
 const ResultContainerPlugin = (props) => {
     const results = filterResults(props.results);
+
     return (
         <div className='Result-container'>
             <div className='Result-header'>Scanned results ({results.length})</div>
